@@ -4,7 +4,7 @@ const { openseaAssetUrl } = require('../config.json');
 const Discord = require('discord.js');
 
 module.exports = {
-	name: process.env.DISCORD_TOKEN_COMMAND || "token",
+	name: process.env.tokenCommand || "token",
 	execute(message, args) {
     if (!args.length) {
       return message.channel.send(`You didn't provide a token id, ${message.author}!`);
@@ -14,11 +14,11 @@ module.exports = {
       return message.channel.send(`Token id must be a number!`);
     }
 
-    let url = `${openseaAssetUrl}/${process.env.CONTRACT_ADDRESS}/${args[0]}`;
+    let url = `${openseaAssetUrl}/${process.env.contractAddress}/${args[0]}`;
     let settings = { 
       method: "GET",
-      headers: process.env.OPEN_SEA_API_KEY == null ? {} : {
-        "X-API-KEY": process.env.OPEN_SEA_API_KEY
+      headers: process.env.apiKey == null ? {} : {
+        "X-API-KEY": process.env.apiKey
       }
     };
     
